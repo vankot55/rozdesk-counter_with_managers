@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Rozdesk Ticket Counter",
+  "version": "1.0",
+  "description": "Рахує унікальні тікети Rozdesk за день",
+  "permissions": ["tabs", "storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "https://rozdesk.rozetka.company/app/ticket/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Rozdesk Counter"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["history.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
