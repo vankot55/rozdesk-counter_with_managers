@@ -1,23 +1,59 @@
 {
   "manifest_version": 3,
   "name": "Rozdesk Ticket Counter",
-  "version": "1.0",
-  "description": "Рахує унікальні тікети Rozdesk за день",
-  "permissions": ["tabs", "storage"],
+  "version": "1.2",
+  "description": "Рахує унікальні тікети Rozdesk, збирає статистику та синхронізує з Google Sheets.",
+  "permissions": [
+    "tabs",
+    "storage",
+    "scripting",
+    "identity",
+    "alarms" // <--- ДОДАНО ДОЗВІЛ "alarms"
+  ],
   "background": {
     "service_worker": "background.js"
   },
   "host_permissions": [
-    "https://rozdesk.rozetka.company/app/ticket/*"
+    "https://rozdesk.rozetka.company/app/ticket/*",
+    "https://www.googleapis.com/"
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Rozdesk Counter"
+    "default_title": "Rozdesk Counter",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
   },
   "web_accessible_resources": [
     {
-      "resources": ["history.html"],
+      "resources": [
+        "history.html",
+        "managers.html",
+        "export.html",
+        "settings.html",
+        "libs/chart.umd.js"
+      ],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'" // Якщо ви використовуєте локальний Chart.js
+    // Якщо ви все ще використовуєте Chart.js з CDN, тут має бути:
+    // "extension_pages": "script-src 'self' cdn.jsdelivr.net; object-src 'self'"
+  },
+  "oauth2": {
+    "client_id": "66155281103-gu295dt8eq8jf4v7idn25pc98r270b1f.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/drive.file",
+      "https://www.googleapis.com/auth/spreadsheets"
+    ]
+  }
 }

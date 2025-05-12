@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Налаштування</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f8f9fa; color: #333; text-align: center; }
+    .container { background-color: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); min-width: 400px; }
+    i.header-icon { font-size: 48px; color: #2c7be5; margin-bottom: 20px; }
+    h1 { margin-top: 0; }
+    .section { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
+    .section h2 { font-size: 1.2em; margin-bottom: 15px; color: #555; }
+    .btn { 
+      background-color: #2c7be5; color: white; border: none; 
+      padding: 10px 20px; border-radius: 5px; cursor: pointer; 
+      margin: 5px; font-size: 1em; display: inline-flex; align-items: center; gap: 8px;
+      transition: background-color 0.2s ease;
+    }
+    .btn:hover { background-color: #1c65c2; }
+    .btn-google { background-color: #db4437; }
+    .btn-google:hover { background-color: #c23321; }
+    .btn-danger { background-color: #dc3545; }
+    .btn-danger:hover { background-color: #c82333; }
+    .btn-sync { background-color: #28a745; } /* Зелений для синхронізації */
+    .btn-sync:hover { background-color: #1f7a34; }
+    .btn:disabled { background-color: #ccc; cursor: not-allowed; }
+
+    #authStatus, #spreadsheetStatus, #syncStatus { margin-top: 10px; font-weight: 500; font-size: 0.9em; }
+    .status-success { color: #28a745; }
+    .status-error { color: #dc3545; }
+    .status-info { color: #17a2b8; }
+    #userInfo { font-size: 0.9em; color: #666; margin-top: 5px; }
+    .close-btn-container { margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <i class="fas fa-cogs header-icon"></i>
+    <h1>Налаштування розширення</h1>
+    
+    <div class="section">
+      <h2>Синхронізація з Google</h2>
+      <button id="authorizeGoogleBtn" class="btn btn-google"><i class="fab fa-google"></i> Авторизуватися з Google</button>
+      <button id="revokeAuthBtn" class="btn btn-danger" style="display: none;"><i class="fas fa-times-circle"></i> Скасувати авторизацію</button>
+      <div id="authStatus">Статус: не авторизовано</div>
+      <div id="userInfo"></div>
+      <div id="spreadsheetStatus"></div>
+    </div>
+
+    <div class="section" id="syncSection" style="display: none;"> <h2>Синхронізація даних</h2>
+      <button id="syncTicketHistoryBtn" class="btn btn-sync"><i class="fas fa-sync-alt"></i> Синхронізувати історію тікетів</button>
+      <div id="syncStatus"></div>
+    </div>
+
+    <div class="close-btn-container">
+      <button onclick="window.close()" class="btn">Закрити</button>
+    </div>
+  </div>
+  <script src="googleApiHelper.js"></script>
+  <script src="settings.js"></script>
+</body>
+</html>

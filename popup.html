@@ -3,12 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <title>Rozdesk Counter</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      width: 320px;
+      padding: 15px;
+      margin: 0;
+      background-color: #f8f9fa;
+      color: #343a40;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e9ecef;
+    }
+    .header h3 {
+      margin: 0;
+      color: #212529;
+      font-size: 18px; /* Increased size */
+      font-weight: 600;
+    }
+    .counter-box {
+      background-color: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .counter-box h3 {
+        font-size: 14px;
+        font-weight: normal;
+        color: #6c757d;
+        margin-bottom: 8px;
+    }
+    #count {
+      font-size: 48px; /* Increased size */
+      font-weight: 700;
+      margin: 5px 0;
+      color: #2c7be5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    #count i {
+      margin-right: 10px;
+      font-size: 36px; /* Adjusted icon size */
+      opacity: 0.7;
+    }
+    .button-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    button {
+      background-color: #2c7be5;
+      color: white;
+      border: none;
+      padding: 10px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+    button i {
+      margin-right: 8px;
+      font-size: 14px;
+    }
+    button:hover {
+      background-color: #1c65c2;
+    }
+    button:active {
+      transform: translateY(1px);
+    }
+    .loader {
+      width: 30px; /* Adjusted loader size */
+      height: 30px;
+      border: 3px solid rgba(44, 123, 229, 0.2);
+      border-radius: 50%;
+      border-top-color: #2c7be5;
+      animation: spin 1s linear infinite;
+      margin: 10px auto; /* Centered loader */
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
-  <h3>Унікальні тікети сьогодні:</h3>
-  <div id="count">Завантаження...</div>
-  <button id="historyBtn">Історія</button>
-  <button id="managersBtn">Менеджери</button>
+  <div class="header">
+    <h3>Rozdesk Ticket Counter</h3>
+  </div>
+
+  <div class="counter-box">
+    <h3>Унікальні тікети сьогодні:</h3>
+    <div id="count">
+      <div class="loader"></div>
+    </div>
+  </div>
+
+  <div class="button-group">
+    <button id="historyBtn"><i class="fas fa-history"></i>Історія</button>
+    <button id="managersBtn"><i class="fas fa-users"></i>Менеджери</button>
+    <button id="exportBtn"><i class="fas fa-file-export"></i>Експорт (інфо)</button>
+    <button id="settingsBtn"><i class="fas fa-cog"></i>Налаштування</button>
+  </div>
+
   <script src="popup.js"></script>
 </body>
 </html>
